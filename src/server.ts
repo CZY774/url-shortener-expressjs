@@ -1,16 +1,18 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cookieParser = require("cookie-parser");
-const path = require("path");
-require("dotenv").config();
+import express from "express";
+import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
+import path from "path";
+import dotenv from "dotenv";
 
 // Import routes
-const authRoutes = require("./routes/auth");
-const linkRoutes = require("./routes/links");
-const statsRoutes = require("./routes/stats");
+import authRoutes from "./routes/auth";
+import linkRoutes from "./routes/links";
+import statsRoutes from "./routes/stats";
 
 // Import middleware
-const { requireAuth } = require("./middleware/auth");
+import { requireAuth } from "./middleware/auth";
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -24,13 +26,13 @@ app.use(express.static("public"));
 // View engine setup
 app.set("view engine", "html");
 app.engine("html", require("ejs").renderFile);
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "../views"));
 
 // Database connection
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/url-shortener")
   .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+  .catch((err: Error) => console.error("MongoDB connection error:", err));
 
 // Routes
 app.use("/auth", authRoutes);
@@ -45,7 +47,7 @@ app.get("/", (req, res) => {
 // Redirect short URL to original URL
 app.get("/:shortCode", async (req, res) => {
   try {
-    const Link = require("./models/Link");
+    const Link = require("./models/Link").default;
     const link = await Link.findOne({ shortCode: req.params.shortCode });
 
     if (link) {
@@ -66,3 +68,5 @@ app.get("/:shortCode", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+export default app;
