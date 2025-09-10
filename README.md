@@ -1,33 +1,46 @@
 # URL Shortener
 
-Aplikasi pemendek URL yang dibangun dengan Express.js, MongoDB, dan Tailwind CSS v4.
+### A URL shortening application built with Express.js, MongoDB, and Tailwind CSS v4.
 
-## Fitur
+## Features
 
-- Buat URL pendek dari URL panjang
-- Statistik klik untuk setiap URL
-- Sistem login untuk manajemen link
-- Dashboard pengguna
+- Create short URLs from long URLs
+- Click statistics for each URL
+- Login system for link management
+- User dashboard
 
-## Instalasi
+## Installation
 
-1. Clone repositori ini
+1. Clone this repository
 2. Install dependencies: `npm install`
-3. Buat file `.env` dan konfigurasi variabel lingkungan
-4. Jalankan aplikasi: `npm run dev`
+3. Create a `.env` file and configure environment variables
+4. Run the application: `npm run dev`
 
-## Konfigurasi Environment
+## Environment Configuration
 
-Buat file `.env` dengan konten:
+Create a `.env` file with the following contents:
+```bash
 PORT=3000
 MONGODB_URI=mongodb://localhost:27017/url-shortener
 JWT_SECRET=your_jwt_secret_here
 BASE_URL=http://localhost:3000
+```
 
+## Usage
 
-## Penggunaan
+1. Open a browser and access `http://localhost:3000`
+2. Create a new account or log in
+3. Create a short URL from the dashboard
+4. Monitor click statistics for each URL
 
-1. Buka browser dan akses `http://localhost:3000`
-2. Daftar akun baru atau login
-3. Buat URL pendek dari dashboard
-4. Pantau statistik klik untuk setiap URL
+## <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="25px" alt="waving hand"> Get In Touch
+<div align="center">
+  <a href="https://www.instagram.com/corneliusyoga" target="_blank"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?&style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram"></a>&nbsp;
+  <a href="https://www.linkedin.com/in/cornelius-yoga-783b6a291" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>&nbsp;
+  <a href="https://www.youtube.com/channel/UCj0TlW5vLO6r_Nlwc8oFBpw" target="_blank"><img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?&style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube"></a>&nbsp;
+  <a href="https://corneliusyoga.vercel.app" target="_blank"><img src="https://img.shields.io/badge/Portfolio-%23000000.svg?&style=for-the-badge&logo=react&logoColor=white" alt="Portfolio"></a>
+  <br/><br/>
+  <img src="https://komarev.com/ghpvc/?username=CZY774&style=flat-square&color=0366D6" alt="Profile Views" />
+  <br/>
+  <sub>Made by Cornelius Ardhani Yoga Pratama</sub>
+</div>
