@@ -6,8 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "nodemon server.js",
-    "build:css": "tailwindcss -i ./public/css/style.css -o ./public/css/output.css --watch"
+    "dev": "nodemon server.ts",
+    "build:css": "tailwindcss -i ./public/css/style.css -o ./public/css/output.css --watch",
+    "build": "tsc",
+    "clean": "rm -rf build"
   },
   "keywords": [
     "url-shortener",
@@ -31,8 +33,14 @@
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
-    "@types/express": "^5.0.3",
-    "@types/node": "^24.3.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cookie-parser": "^1.4.6",
+    "@types/ejs": "^3.1.4",
+    "@types/express": "^4.17.21",
+    "@types/jsonwebtoken": "^9.0.5",
+    "@types/node": "^20.10.5",
+    "@types/shortid": "^0.0.29",
+    "@types/valid-url": "^1.0.4",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
