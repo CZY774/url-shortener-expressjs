@@ -1,13 +1,15 @@
-const express = require("express");
-const Link = require("../models/Link");
+import express from "express";
+import Link from "../models/Link";
+import { AuthRequest } from "../types";
+
 const router = express.Router();
 
 // Get stats for a specific link
-router.get("/:id", async (req, res) => {
+router.get("/:id", async (req: AuthRequest, res) => {
   try {
     const link = await Link.findOne({
       _id: req.params.id,
-      createdBy: req.user._id,
+      createdBy: req.user!._id,
     });
 
     if (!link) {
@@ -30,4 +32,4 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
