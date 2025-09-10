@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Statistik - URL Shortener</title>
-    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/output.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body class="min-h-screen">
     <!-- Header -->
-    <%- include('../partials/header') %>
+    <%- include('../partials/header.html') %>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
@@ -37,7 +37,7 @@
         <h1 class="text-2xl font-bold text-gray-800">Statistik Link</h1>
         <div class="flex space-x-2">
           <a
-            href="<%= `${baseUrl}/${link.shortCode}` %>"
+            href="<%= baseUrl + '/' + link.shortCode %>"
             target="_blank"
             class="btn-primary text-sm"
           >
@@ -107,7 +107,7 @@
           </div>
           <h3 class="text-lg font-semibold text-gray-700">Link Pendek</h3>
           <p class="text-sm text-gray-900 break-all">
-            <%= `${baseUrl}/${link.shortCode}` %>
+            <%= baseUrl + '/' + link.shortCode %>
           </p>
         </div>
 
@@ -168,8 +168,7 @@
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
-              <% link.clickHistory.slice().reverse().slice(0, 10).forEach(click
-              => { %>
+              <% link.clickHistory.slice().reverse().slice(0, 10).forEach(click => { %>
               <tr>
                 <td class="py-3 px-4">
                   <%= new Date(click.timestamp).toLocaleString('id-ID') %>
@@ -197,12 +196,12 @@
     </main>
 
     <!-- Footer -->
-    <%- include('../partials/footer') %>
+    <%- include('../partials/footer.html') %>
 
     <script>
       // Fungsi untuk menyalin URL pendek
       function copyShortUrl() {
-        const shortUrl = "<%= `${baseUrl}/${link.shortCode}` %>";
+        const shortUrl = "<%= baseUrl + '/' + link.shortCode %>";
         navigator.clipboard
           .writeText(shortUrl)
           .then(() => {
