@@ -9,11 +9,16 @@ const getLinks = async (req: AuthRequest, res: Response): Promise<void> => {
     const links = await Link.find({ createdBy: req.user!._id }).sort({
       createdAt: -1,
     });
-    res.render("dashboard/index", { links, user: req.user });
+    res.render("dashboard/index", {
+      links,
+      user: req.user,
+      baseUrl: process.env.BASE_URL || "http://localhost:3000", // Tambahkan ini
+    });
   } catch (error) {
     res.status(500).render("dashboard/index", {
       error: "Error fetching links",
       links: [],
+      baseUrl: process.env.BASE_URL || "http://localhost:3000", // Tambahkan ini juga
     });
   }
 };
