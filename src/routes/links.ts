@@ -1,10 +1,11 @@
-const express = require("express");
-const {
+import express from "express";
+import {
   getLinks,
   createLink,
   showCreateForm,
   deleteLink,
-} = require("../controllers/linkController");
+} from "../controllers/linkController";
+
 const router = express.Router();
 
 // Get all links for user
@@ -19,4 +20,4 @@ router.post("/create", createLink);
 // Delete a link
 router.delete("/:id", deleteLink);
 
-module.exports = router;
+export default router;
