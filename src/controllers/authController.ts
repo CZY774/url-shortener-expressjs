@@ -1,28 +1,31 @@
-const User = require("../models/User");
-const jwt = require("jsonwebtoken");
+import { Request, Response } from "express";
+import User from "../models/User";
+import jwt from "jsonwebtoken";
+import { AuthRequest, JwtPayload } from "../types";
 
 const maxAge = 3 * 24 * 60 * 60; // 3 days in seconds
 
-const createToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
+const createToken = (id: string): string => {
+  return jwt.sign({ id }, process.env.JWT_SECRET || "fallback_secret", {
     expiresIn: maxAge,
   });
 };
 
 // Handle login
-const login = async (req, res) => {
+const login = async (req: Request, res: Response): Promise<void> => {
   const { username, password } = req.body;
 
   try {
     const user = await User.findOne({ username });
 
     if (!user || !(await user.correctPassword(password, user.password))) {
-      return res.status(401).render("auth/login", {
+      res.status(401).render("auth/login", {
         error: "Invalid username or password",
       });
+      return;
     }
 
-    const token = createToken(user._id);
+    const token = createToken(user._id.toString());
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.redirect("/links");
   } catch (error) {
@@ -33,14 +36,15 @@ const login = async (req, res) => {
 };
 
 // Handle registration
-const register = async (req, res) => {
+const register = async (req: Request, res: Response): Promise<void> => {
   const { username, email, password, confirmPassword } = req.body;
 
   try {
     if (password !== confirmPassword) {
-      return res.status(400).render("auth/register", {
+      res.status(400).render("auth/register", {
         error: "Passwords do not match",
       });
+      return;
     }
 
     const existingUser = await User.findOne({
@@ -48,13 +52,14 @@ const register = async (req, res) => {
     });
 
     if (existingUser) {
-      return res.status(400).render("auth/register", {
+      res.status(400).render("auth/register", {
         error: "User already exists with this email or username",
       });
+      return;
     }
 
     const user = await User.create({ username, email, password });
-    const token = createToken(user._id);
+    const token = createToken(user._id.toString());
 
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
     res.redirect("/links");
@@ -66,13 +71,9 @@ const register = async (req, res) => {
 };
 
 // Handle logout
-const logout = (req, res) => {
+const logout = (req: Request, res: Response): void => {
   res.cookie("jwt", "", { maxAge: 1 });
   res.redirect("/");
 };
 
-module.exports = {
-  login,
-  register,
-  logout,
-};
+export { login, register, logout };
