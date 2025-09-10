@@ -1,10 +1,12 @@
-const Link = require("../models/Link");
-const generateShortCode = require("../utils/generateShortCode");
+import { Response } from "express";
+import Link from "../models/Link";
+import generateShortCode from "../utils/generateShortCode";
+import { AuthRequest } from "../types";
 
 // Get all links for user
-const getLinks = async (req, res) => {
+const getLinks = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const links = await Link.find({ createdBy: req.user._id }).sort({
+    const links = await Link.find({ createdBy: req.user!._id }).sort({
       createdAt: -1,
     });
     res.render("dashboard/index", { links, user: req.user });
@@ -17,7 +19,7 @@ const getLinks = async (req, res) => {
 };
 
 // Create new short link
-const createLink = async (req, res) => {
+const createLink = async (req: AuthRequest, res: Response): Promise<void> => {
   const { originalUrl, title } = req.body;
 
   try {
@@ -26,7 +28,7 @@ const createLink = async (req, res) => {
       originalUrl,
       shortCode,
       title,
-      createdBy: req.user._id,
+      createdBy: req.user!._id,
     });
 
     res.redirect("/links");
@@ -39,20 +41,21 @@ const createLink = async (req, res) => {
 };
 
 // Show form to create new link
-const showCreateForm = (req, res) => {
+const showCreateForm = (req: AuthRequest, res: Response): void => {
   res.render("dashboard/create", { user: req.user });
 };
 
 // Delete a link
-const deleteLink = async (req, res) => {
+const deleteLink = async (req: AuthRequest, res: Response): Promise<void> => {
   try {
     const link = await Link.findOne({
       _id: req.params.id,
-      createdBy: req.user._id,
+      createdBy: req.user!._id,
     });
 
     if (!link) {
-      return res.status(404).json({ error: "Link not found" });
+      res.status(404).json({ error: "Link not found" });
+      return;
     }
 
     await Link.deleteOne({ _id: req.params.id });
@@ -62,9 +65,4 @@ const deleteLink = async (req, res) => {
   }
 };
 
-module.exports = {
-  getLinks,
-  createLink,
-  showCreateForm,
-  deleteLink,
-};
+export { getLinks, createLink, showCreateForm, deleteLink };
