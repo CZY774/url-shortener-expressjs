@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Statistik - URL Shortener</title>
+    <link href="/css/style.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body class="min-h-screen">
+    <!-- Header -->
+    <%- include('../partials/header') %>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+      <a
+        href="/links"
+        class="inline-flex items-center text-blue-600 hover:text-blue-800 mb-4"
+      >
+        <svg
+          class="w-4 h-4 mr-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+          ></path>
+        </svg>
+        Kembali ke Dashboard
+      </a>
+
+      <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800">Statistik Link</h1>
+        <div class="flex space-x-2">
+          <a
+            href="<%= `${baseUrl}/${link.shortCode}` %>"
+            target="_blank"
+            class="btn-primary text-sm"
+          >
+            Buka Link
+          </a>
+          <button
+            onclick="copyShortUrl()"
+            class="bg-gray-600 text-white px-3 py-1 rounded text-sm hover:bg-gray-700"
+          >
+            Salin
+          </button>
+        </div>
+      </div>
+
+      <% if (typeof error !== 'undefined' && error) { %>
+      <div
+        class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4"
+      >
+        <%= error %>
+      </div>
+      <% } %>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <!-- Card: Total Klik -->
+        <div class="card text-center">
+          <div class="text-blue-500 mb-2">
+            <svg
+              class="w-8 h-8 mx-auto"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              ></path>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-700">Total Klik</h3>
+          <p class="text-3xl font-bold text-gray-900"><%= link.clicks %></p>
+        </div>
+
+        <!-- Card: Link Pendek -->
+        <div class="card text-center">
+          <div class="text-green-500 mb-2">
+            <svg
+              class="w-8 h-8 mx-auto"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-700">Link Pendek</h3>
+          <p class="text-sm text-gray-900 break-all">
+            <%= `${baseUrl}/${link.shortCode}` %>
+          </p>
+        </div>
+
+        <!-- Card: Link Asli -->
+        <div class="card text-center">
+          <div class="text-purple-500 mb-2">
+            <svg
+              class="w-8 h-8 mx-auto"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+              ></path>
+            </svg>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-700">Link Asli</h3>
+          <p class="text-sm text-gray-900 break-all"><%= link.originalUrl %></p>
+        </div>
+      </div>
+
+      <!-- Grafik Statistik -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="card">
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">
+            Klik per Hari (7 Hari Terakhir)
+          </h3>
+          <canvas id="dailyClicksChart" height="250"></canvas>
+        </div>
+
+        <div class="card">
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">
+            Distribusi Klik per Jam
+          </h3>
+          <canvas id="hourlyClicksChart" height="250"></canvas>
+        </div>
+      </div>
+
+      <!-- Tabel Riwayat Klik -->
+      <div class="card">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">
+          Riwayat Klik Terbaru
+        </h3>
+
+        <% if (link.clickHistory && link.clickHistory.length > 0) { %>
+        <div class="overflow-x-auto">
+          <table class="min-w-full">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="py-3 px-4 text-left">Waktu</th>
+                <th class="py-3 px-4 text-left">IP Address</th>
+                <th class="py-3 px-4 text-left">User Agent</th>
+                <th class="py-3 px-4 text-left">Referrer</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <% link.clickHistory.slice().reverse().slice(0, 10).forEach(click
+              => { %>
+              <tr>
+                <td class="py-3 px-4">
+                  <%= new Date(click.timestamp).toLocaleString('id-ID') %>
+                </td>
+                <td class="py-3 px-4">
+                  <%= click.ipAddress || 'Tidak tercatat' %>
+                </td>
+                <td class="py-3 px-4 text-sm">
+                  <% if (click.userAgent) { %> <%= click.userAgent.length > 50 ?
+                  click.userAgent.substring(0, 50) + '...' : click.userAgent %>
+                  <% } else { %> Tidak tercatat <% } %>
+                </td>
+                <td class="py-3 px-4"><%= click.referrer || 'Langsung' %></td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+        <% } else { %>
+        <p class="text-gray-600 text-center py-4">
+          Belum ada data klik untuk link ini.
+        </p>
+        <% } %>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+    <script>
+      // Fungsi untuk menyalin URL pendek
+      function copyShortUrl() {
+        const shortUrl = "<%= `${baseUrl}/${link.shortCode}` %>";
+        navigator.clipboard
+          .writeText(shortUrl)
+          .then(() => {
+            alert("URL pendek berhasil disalin!");
+          })
+          .catch((err) => {
+            console.error("Gagal menyalin URL: ", err);
+          });
+      }
+
+      // Data untuk grafik (contoh data - dalam implementasi nyata, data ini harus berasal dari server)
+      const dailyClicksData = {
+        labels: [
+          "6 Hari Lalu",
+          "5 Hari Lalu",
+          "4 Hari Lalu",
+          "3 Hari Lalu",
+          "2 Hari Lalu",
+          "Kemarin",
+          "Hari Ini",
+        ],
+        datasets: [
+          {
+            label: "Jumlah Klik",
+            data: [12, 19, 8, 15, 12, 17, 9],
+            backgroundColor: "rgba(59, 130, 246, 0.2)",
+            borderColor: "rgba(59, 130, 246, 1)",
+            borderWidth: 2,
+            tension: 0.3,
+          },
+        ],
+      };
+
+      const hourlyClicksData = {
+        labels: [
+          "00:00-03:59",
+          "04:00-07:59",
+          "08:00-11:59",
+          "12:00-15:59",
+          "16:00-19:59",
+          "20:00-23:59",
+        ],
+        datasets: [
+          {
+            label: "Jumlah Klik",
+            data: [5, 8, 22, 18, 25, 12],
+            backgroundColor: [
+              "rgba(239, 68, 68, 0.2)",
+              "rgba(249, 115, 22, 0.2)",
+              "rgba(234, 179, 8, 0.2)",
+              "rgba(34, 197, 94, 0.2)",
+              "rgba(59, 130, 246, 0.2)",
+              "rgba(139, 92, 246, 0.2)",
+            ],
+            borderColor: [
+              "rgba(239, 68, 68, 1)",
+              "rgba(249, 115, 22, 1)",
+              "rgba(234, 179, 8, 1)",
+              "rgba(34, 197, 94, 1)",
+              "rgba(59, 130, 246, 1)",
+              "rgba(139, 92, 246, 1)",
+            ],
+            borderWidth: 1,
+          },
+        ],
+      };
+
+      // Inisialisasi grafik
+      document.addEventListener("DOMContentLoaded", function () {
+        // Grafik klik harian
+        const dailyClicksCtx = document
+          .getElementById("dailyClicksChart")
+          .getContext("2d");
+        new Chart(dailyClicksCtx, {
+          type: "line",
+          data: dailyClicksData,
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  precision: 0,
+                },
+              },
+            },
+          },
+        });
+
+        // Grafik klik per jam
+        const hourlyClicksCtx = document
+          .getElementById("hourlyClicksChart")
+          .getContext("2d");
+        new Chart(hourlyClicksCtx, {
+          type: "bar",
+          data: hourlyClicksData,
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  precision: 0,
+                },
+              },
+            },
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
