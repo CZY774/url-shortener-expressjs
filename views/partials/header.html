@@ -1,0 +1,21 @@
+<header class="navbar">
+  <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <a href="/" class="text-xl font-bold text-blue-600">ShortURL</a>
+
+    <div class="flex items-center space-x-4">
+      <% if (typeof user !== 'undefined' && user) { %>
+      <a href="/links" class="text-gray-700 hover:text-blue-600">Dashboard</a>
+      <a href="/links/create" class="text-gray-700 hover:text-blue-600"
+        >Create Link</a
+      >
+      <span class="text-gray-500">Hello, <%= user.username %></span>
+      <a href="/auth/logout" class="text-gray-700 hover:text-blue-600"
+        >Logout</a
+      >
+      <% } else { %>
+      <a href="/auth/login" class="text-gray-700 hover:text-blue-600">Login</a>
+      <a href="/auth/register" class="btn-primary">Sign Up</a>
+      <% } %>
+    </div>
+  </nav>
+</header>
