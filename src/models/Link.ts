@@ -1,6 +1,7 @@
-const mongoose = require("mongoose");
+import mongoose, { Document, Schema } from "mongoose";
+import { ILink, IClick } from "../types";
 
-const clickSchema = new mongoose.Schema({
+const clickSchema = new Schema<IClick>({
   timestamp: {
     type: Date,
     default: Date.now,
@@ -10,18 +11,19 @@ const clickSchema = new mongoose.Schema({
   ipAddress: String,
 });
 
-const linkSchema = new mongoose.Schema(
+const linkSchema = new Schema<ILink>(
   {
     originalUrl: {
       type: String,
       required: true,
       validate: {
-        validator: function (v) {
+        validator: function (v: string) {
           return /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/.test(
             v
           );
         },
-        message: (props) => `${props.value} is not a valid URL!`,
+        message: (props: { value: string }) =>
+          `${props.value} is not a valid URL!`,
       },
     },
     shortCode: {
@@ -30,7 +32,7 @@ const linkSchema = new mongoose.Schema(
       unique: true,
     },
     createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
@@ -49,4 +51,4 @@ const linkSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("Link", linkSchema);
+export default mongoose.model<ILink>("Link", linkSchema);
