@@ -2,115 +2,174 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <%- include('partials/head.html', { title: 'URL Shortener' }) %>
+    <%- include('partials/head.html', { title: 'URL Shortener - Shorten Your Long URLs' }) %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
-  <body class="min-h-screen">
+  <body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
     <!-- Header -->
     <%- include('partials/header.html') %>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-10">
-      <div class="text-center mb-12">
-        <h1 class="text-4xl font-bold text-gray-800 mb-4">
-          Shorten Your Long URLs
+    <!-- Hero Section -->
+    <main class="container mx-auto px-4 py-16">
+      <!-- Hero Content -->
+      <div class="text-center mb-16">
+        <div class="mb-8">
+          <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-6 shadow-lg">
+            <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+            </svg>
+          </div>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold text-gray-800 mb-6 leading-tight">
+          Shorten Your 
+          <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Long URLs</span>
         </h1>
-        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-          Create short, memorable links and track their performance with
-          detailed analytics.
+        <p class="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Create short, memorable links and track their performance with detailed analytics. 
+          <span class="font-medium text-gray-700">Fast, reliable, and completely free.</span>
         </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8 mb-12">
-        <div class="card text-center">
-          <div class="text-blue-500 mb-4">
-            <svg
-              class="w-12 h-12 mx-auto"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-              ></path>
+      <!-- Quick URL Shortener -->
+      <div class="max-w-4xl mx-auto mb-20">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 md:p-10">
+          <h2 class="text-2xl font-semibold text-center text-gray-800 mb-8">Try it now - No signup required</h2>
+          <form class="space-y-4">
+            <div class="flex flex-col md:flex-row gap-4">
+              <input
+                type="url"
+                placeholder="Enter your long URL here..."
+                class="flex-1 px-6 py-4 text-lg border-2 border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 outline-none"
+                required
+              >
+              <button
+                type="submit"
+                class="px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                Shorten URL
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Features Grid -->
+      <div class="grid md:grid-cols-3 gap-8 mb-20">
+        <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+          <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl mb-6 shadow-lg">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-2">Shorten URLs</h3>
-          <p class="text-gray-600">
-            Convert long URLs into short, easy-to-share links.
+          <h3 class="text-xl font-semibold mb-4 text-gray-800">Lightning Fast</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Convert long URLs into short, easy-to-share links in seconds. Optimized for speed and reliability.
           </p>
         </div>
 
-        <div class="card text-center">
-          <div class="text-green-500 mb-4">
-            <svg
-              class="w-12 h-12 mx-auto"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-              ></path>
+        <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+          <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-xl mb-6 shadow-lg">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-2">Track Clicks</h3>
-          <p class="text-gray-600">
-            Monitor how many clicks your shortened links receive.
+          <h3 class="text-xl font-semibold mb-4 text-gray-800">Detailed Analytics</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Monitor click performance with comprehensive analytics. Track visitor behavior and optimize your links.
           </p>
         </div>
 
-        <div class="card text-center">
-          <div class="text-purple-500 mb-4">
-            <svg
-              class="w-12 h-12 mx-auto"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-              ></path>
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-              ></path>
+        <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+          <div class="flex items-center justify-center w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-xl mb-6 shadow-lg">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-2">User Dashboard</h3>
-          <p class="text-gray-600">
-            Manage all your links in one convenient dashboard.
+          <h3 class="text-xl font-semibold mb-4 text-gray-800">Secure & Reliable</h3>
+          <p class="text-gray-600 leading-relaxed">
+            Your links are protected with enterprise-grade security. 99.9% uptime guarantee for all your shortened URLs.
           </p>
         </div>
       </div>
 
-      <div class="text-center">
-        <a
-          href="/auth/register"
-          class="btn-primary text-lg px-6 py-3 inline-block"
-        >
-          Get Started Free
-        </a>
-        <p class="mt-4 text-gray-600">
-          Already have an account?
-          <a href="/auth/login" class="text-blue-500 hover:underline"
-            >Sign in</a
+      <!-- Stats Section -->
+      <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-12 mb-20 text-center text-white shadow-2xl">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8">Trusted by Thousands</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="space-y-2">
+            <div class="text-4xl md:text-5xl font-bold">10K+</div>
+            <div class="text-blue-100 text-lg">URLs Shortened</div>
+          </div>
+          <div class="space-y-2">
+            <div class="text-4xl md:text-5xl font-bold">50K+</div>
+            <div class="text-blue-100 text-lg">Clicks Tracked</div>
+          </div>
+          <div class="space-y-2">
+            <div class="text-4xl md:text-5xl font-bold">1K+</div>
+            <div class="text-blue-100 text-lg">Happy Users</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="text-center bg-white rounded-2xl p-12 shadow-xl border border-gray-100">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+          Ready to Get Started?
+        </h2>
+        <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          Join thousands of users who trust our platform for their URL shortening needs.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a
+            href="/auth/register"
+            class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
           >
-        </p>
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            Get Started Free
+          </a>
+          <p class="text-gray-600">
+            Already have an account?
+            <a href="/auth/login" class="text-blue-600 hover:text-blue-700 font-medium hover:underline">
+              Sign in
+            </a>
+          </p>
+        </div>
       </div>
     </main>
 
     <!-- Footer -->
     <%- include('partials/footer.html') %>
+
+    <script>
+      // Add some interactive animations
+      document.addEventListener('DOMContentLoaded', function() {
+        // Animate hero elements on load
+        const heroElements = document.querySelectorAll('h1, p');
+        heroElements.forEach((el, index) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            el.style.transition = 'all 0.6s ease-out';
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, index * 200);
+        });
+
+        // Add hover effect to feature cards
+        const cards = document.querySelectorAll('.grid > div');
+        cards.forEach(card => {
+          card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px)';
+          });
+          card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+          });
+        });
+      });
+    </script>
   </body>
 </html>
