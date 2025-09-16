@@ -2,64 +2,434 @@
 <!DOCTYPE html>
 <html lang="id">
   <head>
-    <%- include('../partials/head.html', { title: 'Create Short URL - URL Shortener'
-    }) %>
+    <%- include('../partials/head.html', { title: 'Create Short URL - URL Shortener' }) %>
   </head>
-  <body class="min-h-screen bg-gray-50">
+  <body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
     <%- include('../partials/header.html') %>
 
     <main class="container mx-auto px-4 py-8">
-      <div class="max-w-2xl mx-auto">
-        <h1 class="text-2xl font-bold mb-6">Create Short URL</h1>
+      <div class="max-w-3xl mx-auto">
+        <!-- Page Header -->
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full mb-4 shadow-lg">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+            </svg>
+          </div>
+          <h1 class="text-3xl font-bold text-gray-800 mb-2">Create Short URL</h1>
+          <p class="text-gray-600">Transform your long URL into a short, shareable link</p>
+        </div>
 
+        <!-- Breadcrumb -->
+        <nav class="flex items-center space-x-2 text-sm text-gray-600 mb-8">
+          <a href="/links" class="hover:text-blue-600 transition-colors duration-200">Dashboard</a>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+          <span class="text-gray-400">Create Link</span>
+        </nav>
+
+        <!-- Error Message -->
         <% if (typeof error !== 'undefined' && error) { %>
-        <div
-          class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4"
-        >
-          <%= error %>
+        <div class="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-lg mb-6 flex items-start space-x-3">
+          <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <div>
+            <p class="font-medium">Creation Failed</p>
+            <p class="text-sm"><%= error %></p>
+          </div>
         </div>
         <% } %>
 
-        <div class="card">
-          <form action="/links/create" method="POST">
-            <div class="mb-4">
-              <label for="title" class="block text-gray-700 mb-2"
-                >Title (Optional)</label
-              >
-              <input
-                type="text"
-                id="title"
-                name="title"
-                class="form-input"
-                placeholder="My Website"
-              />
-            </div>
+        <!-- Main Form Card -->
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+          <!-- Form Header -->
+          <div class="px-8 py-6 bg-gray-50 border-b border-gray-200">
+            <h2 class="text-xl font-semibold text-gray-800 flex items-center space-x-2">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+              </svg>
+              <span>URL Information</span>
+            </h2>
+            <p class="text-gray-600 mt-1">Enter the details for your short URL</p>
+          </div>
 
-            <div class="mb-4">
-              <label for="originalUrl" class="block text-gray-700 mb-2"
-                >Original URL</label
-              >
-              <input
-                type="url"
-                id="originalUrl"
-                name="originalUrl"
-                required
-                class="form-input"
-                placeholder="https://example.com"
-              />
-            </div>
+          <!-- Form Body -->
+          <div class="px-8 py-8">
+            <form action="/links/create" method="POST" id="createForm" class="space-y-6">
+              <!-- Title Field -->
+              <div class="space-y-2">
+                <label for="title" class="block text-sm font-medium text-gray-700">
+                  Title (Optional)
+                  <span class="text-gray-500 font-normal">- Help you identify this link</span>
+                </label>
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
+                    </svg>
+                  </div>
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 outline-none"
+                    placeholder="My Awesome Website"
+                    maxlength="100"
+                  />
+                </div>
+                <div class="flex justify-between items-center text-xs text-gray-500">
+                  <span>This will help you organize your links</span>
+                  <span id="titleCounter">0/100</span>
+                </div>
+              </div>
 
-            <div class="flex justify-between">
-              <a href="/links" class="btn-secondary">Cancel</a>
-              <button type="submit" class="btn-primary">
-                Create Short URL
-              </button>
+              <!-- Original URL Field -->
+              <div class="space-y-2">
+                <label for="originalUrl" class="block text-sm font-medium text-gray-700">
+                  Original URL <span class="text-red-500">*</span>
+                </label>
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                    </svg>
+                  </div>
+                  <input
+                    type="url"
+                    id="originalUrl"
+                    name="originalUrl"
+                    required
+                    class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors duration-200 outline-none"
+                    placeholder="https://example.com/very-long-url-that-needs-shortening"
+                  />
+                  <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
+                    <div id="urlValidation" class="hidden">
+                      <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-xs text-gray-500">
+                  Must be a valid URL starting with http:// or https://
+                </div>
+              </div>
+
+              <!-- Custom Short Code (Future Feature) -->
+              <div class="space-y-2 opacity-60">
+                <label for="customCode" class="block text-sm font-medium text-gray-700">
+                  Custom Short Code (Coming Soon)
+                  <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full ml-2">PRO</span>
+                </label>
+                <div class="relative">
+                  <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <span class="text-gray-400 text-sm">shorturl.com/</span>
+                  </div>
+                  <input
+                    type="text"
+                    id="customCode"
+                    name="customCode"
+                    disabled
+                    class="block w-full pl-24 pr-3 py-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed transition-colors duration-200 outline-none"
+                    placeholder="my-custom-link"
+                  />
+                </div>
+                <div class="text-xs text-gray-500">
+                  Choose your own custom short code (Premium feature)
+                </div>
+              </div>
+
+              <!-- URL Preview -->
+              <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-6 border border-blue-200">
+                <h3 class="text-sm font-medium text-gray-800 mb-3 flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                  <span>Preview</span>
+                </h3>
+                <div class="space-y-3">
+                  <div>
+                    <p class="text-xs text-gray-600 mb-1">Your short URL will be:</p>
+                    <div class="bg-white border border-gray-200 rounded-lg px-4 py-3">
+                      <code class="text-sm text-blue-600 font-mono">
+                        <%= typeof baseUrl !== 'undefined' ? baseUrl : 'http://localhost:3000' %>/
+                        <span id="previewCode" class="text-gray-400">abc123</span>
+                      </code>
+                    </div>
+                  </div>
+                  <div>
+                    <p class="text-xs text-gray-600 mb-1">Original URL:</p>
+                    <div class="bg-white border border-gray-200 rounded-lg px-4 py-3">
+                      <span id="previewUrl" class="text-sm text-gray-600 break-all">Enter URL above to see preview</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Advanced Options -->
+              <div class="border border-gray-200 rounded-lg">
+                <button
+                  type="button"
+                  id="toggleAdvanced"
+                  class="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                >
+                  <span class="flex items-center space-x-2 text-sm font-medium text-gray-700">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span>Advanced Options</span>
+                  </span>
+                  <svg id="advancedIcon" class="w-4 h-4 text-gray-400 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                
+                <div id="advancedOptions" class="hidden px-4 pb-4 space-y-4 border-t border-gray-200">
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <!-- Expiration Date -->
+                    <div class="opacity-60">
+                      <label for="expiration" class="block text-sm font-medium text-gray-700 mb-2">
+                        Expiration Date
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full ml-1">PRO</span>
+                      </label>
+                      <input
+                        type="datetime-local"
+                        id="expiration"
+                        name="expiration"
+                        disabled
+                        class="block w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed text-sm"
+                      />
+                    </div>
+                    
+                    <!-- Password Protection -->
+                    <div class="opacity-60">
+                      <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                        Password Protection
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded-full ml-1">PRO</span>
+                      </label>
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        disabled
+                        placeholder="Optional password"
+                        class="block w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed text-sm"
+                      />
+                    </div>
+                  </div>
+                  
+                  <div class="text-xs text-gray-500 bg-blue-50 p-3 rounded-lg">
+                    <p class="flex items-center space-x-1">
+                      <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span><strong>Pro Tip:</strong> Advanced features like custom codes, expiration dates, and password protection will be available in our Pro plan.</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="flex flex-col sm:flex-row gap-4 pt-6">
+                <a 
+                  href="/links" 
+                  class="flex items-center justify-center px-6 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                >
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                  </svg>
+                  Cancel
+                </a>
+                <button
+                  type="submit"
+                  id="submitBtn"
+                  class="flex-1 flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-lg hover:from-blue-600 hover:to-indigo-700 focus:ring-4 focus:ring-blue-200 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                >
+                  <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                  </svg>
+                  Create Short URL
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Tips Section -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+            <div class="w-10 h-10 bg-gradient-to-r from-green-400 to-green-500 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+              </svg>
             </div>
-          </form>
+            <h3 class="font-semibold text-gray-800 mb-2">Lightning Fast</h3>
+            <p class="text-sm text-gray-600">Your short URLs are created instantly and redirect users in milliseconds.</p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+            <div class="w-10 h-10 bg-gradient-to-r from-blue-400 to-blue-500 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-gray-800 mb-2">Track Everything</h3>
+            <p class="text-sm text-gray-600">Get detailed analytics on clicks, locations, and user behavior.</p>
+          </div>
+
+          <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+            <div class="w-10 h-10 bg-gradient-to-r from-purple-400 to-purple-500 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-gray-800 mb-2">Secure & Reliable</h3>
+            <p class="text-sm text-gray-600">Your links are protected with enterprise-grade security and 99.9% uptime.</p>
+          </div>
         </div>
       </div>
     </main>
 
     <%- include('../partials/footer.html') %>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+      <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 text-center">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">Short URL Created!</h3>
+        <p class="text-gray-600 mb-6">Your short URL has been created successfully.</p>
+        <div class="space-y-3">
+          <div class="bg-gray-50 rounded-lg p-3">
+            <p class="text-xs text-gray-600 mb-1">Your short URL:</p>
+            <div class="flex items-center space-x-2">
+              <code id="successUrl" class="flex-1 text-sm text-blue-600 font-mono bg-white border rounded px-2 py-1"></code>
+              <button id="copySuccessBtn" class="text-blue-600 hover:text-blue-700">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="flex space-x-3">
+            <button id="closeModal" class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">
+              Close
+            </button>
+            <a href="/links" class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-center">
+              View Dashboard
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('createForm');
+        const titleInput = document.getElementById('title');
+        const urlInput = document.getElementById('originalUrl');
+        const titleCounter = document.getElementById('titleCounter');
+        const previewUrl = document.getElementById('previewUrl');
+        const previewCode = document.getElementById('previewCode');
+        const urlValidation = document.getElementById('urlValidation');
+        const submitBtn = document.getElementById('submitBtn');
+        const toggleAdvanced = document.getElementById('toggleAdvanced');
+        const advancedOptions = document.getElementById('advancedOptions');
+        const advancedIcon = document.getElementById('advancedIcon');
+
+        // Title character counter
+        titleInput.addEventListener('input', function() {
+          const count = this.value.length;
+          titleCounter.textContent = `${count}/100`;
+          
+          if (count > 80) {
+            titleCounter.classList.add('text-red-500');
+          } else {
+            titleCounter.classList.remove('text-red-500');
+          }
+        });
+
+        // URL validation and preview
+        urlInput.addEventListener('input', function() {
+          const url = this.value.trim();
+          
+          if (url) {
+            previewUrl.textContent = url;
+            
+            // Simple URL validation
+            try {
+              new URL(url);
+              urlValidation.classList.remove('hidden');
+              this.classList.remove('border-red-500');
+              this.classList.add('border-green-500');
+            } catch (e) {
+              urlValidation.classList.add('hidden');
+              this.classList.remove('border-green-500');
+              if (url.length > 10) { // Only show error for longer inputs
+                this.classList.add('border-red-500');
+              }
+            }
+          } else {
+            previewUrl.textContent = 'Enter URL above to see preview';
+            urlValidation.classList.add('hidden');
+            this.classList.remove('border-red-500', 'border-green-500');
+          }
+        });
+
+        // Toggle advanced options
+        toggleAdvanced.addEventListener('click', function() {
+          const isHidden = advancedOptions.classList.contains('hidden');
+          
+          if (isHidden) {
+            advancedOptions.classList.remove('hidden');
+            advancedIcon.style.transform = 'rotate(180deg)';
+          } else {
+            advancedOptions.classList.add('hidden');
+            advancedIcon.style.transform = 'rotate(0deg)';
+          }
+        });
+
+        // Form submission
+        form.addEventListener('submit', function(e) {
+          const originalBtnText = submitBtn.innerHTML;
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = `
+            <svg class="animate-spin w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            Creating...
+          `;
+          
+          // Reset after 10 seconds if form doesn't submit
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+          }, 10000);
+        });
+
+        // Animate form elements on load
+        const elements = form.querySelectorAll('.space-y-2, .bg-gradient-to-r, .border');
+        elements.forEach((el, index) => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            el.style.transition = 'all 0.4s ease-out';
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          }, index * 100);
+        });
+
+        // Focus on URL input
+        setTimeout(() => urlInput.focus(), 500);
+      });
+    </script>
   </body>
 </html>
