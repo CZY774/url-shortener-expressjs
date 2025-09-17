@@ -1,22 +1,49 @@
 <!-- views/partials/head.html -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="ShortURL - The fastest and most reliable URL shortening service. Create short, memorable links and track their performance with detailed analytics." />
-<meta name="keywords" content="url shortener, link shortener, short url, analytics, link tracking" />
+<meta
+  name="description"
+  content="ShortURL - The fastest and most reliable URL shortening service. Create short, memorable links and track their performance with detailed analytics."
+/>
+<meta
+  name="keywords"
+  content="url shortener, link shortener, short url, analytics, link tracking"
+/>
 <meta name="author" content="Cornelius Yoga" />
 
 <!-- Open Graph Meta Tags -->
-<meta property="og:title" content="<%= typeof title !== 'undefined' ? title : 'ShortURL - Fast & Reliable URL Shortener' %>" />
-<meta property="og:description" content="Create short, memorable links and track their performance with detailed analytics. Fast, reliable, and completely free." />
+<meta
+  property="og:title"
+  content="<%= typeof title !== 'undefined' ? title : 'ShortURL - Fast & Reliable URL Shortener' %>"
+/>
+<meta
+  property="og:description"
+  content="Create short, memorable links and track their performance with detailed analytics. Fast, reliable, and completely free."
+/>
 <meta property="og:type" content="website" />
-<meta property="og:url" content="<%= typeof baseUrl !== 'undefined' ? baseUrl : 'http://localhost:3000' %>" />
-<meta property="og:image" content="<%= typeof baseUrl !== 'undefined' ? baseUrl : 'http://localhost:3000' %>/images/og-image.png" />
+<meta
+  property="og:url"
+  content="<%= typeof baseUrl !== 'undefined' ? baseUrl : 'http://localhost:3000' %>"
+/>
+<meta
+  property="og:image"
+  content="<%= typeof baseUrl !== 'undefined' ? baseUrl : 'http://localhost:3000' %>/images/og-image.png"
+/>
 
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="<%= typeof title !== 'undefined' ? title : 'ShortURL - Fast & Reliable URL Shortener' %>" />
-<meta name="twitter:description" content="Create short, memorable links and track their performance with detailed analytics." />
-<meta name="twitter:image" content="<%= typeof baseUrl !== 'undefined' ? baseUrl : 'http://localhost:3000' %>/images/twitter-card.png" />
+<meta
+  name="twitter:title"
+  content="<%= typeof title !== 'undefined' ? title : 'ShortURL - Fast & Reliable URL Shortener' %>"
+/>
+<meta
+  name="twitter:description"
+  content="Create short, memorable links and track their performance with detailed analytics."
+/>
+<meta
+  name="twitter:image"
+  content="<%= typeof baseUrl !== 'undefined' ? baseUrl : 'http://localhost:3000' %>/images/twitter-card.png"
+/>
 
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -30,14 +57,20 @@
 <meta name="msapplication-TileColor" content="#3b82f6" />
 
 <!-- Title -->
-<title><%= typeof title !== 'undefined' ? title : 'ShortURL - Fast & Reliable URL Shortener' %></title>
+<title>
+  <%= typeof title !== 'undefined' ? title : 'ShortURL - Fast & Reliable URL
+  Shortener' %>
+</title>
 
 <!-- Preconnect for better performance -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
 
 <!-- Stylesheets -->
 <link href="/css/output.css" rel="stylesheet" />
@@ -50,24 +83,24 @@
 
 <!-- Structured Data for SEO -->
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  "name": "ShortURL",
-  "description": "Fast and reliable URL shortening service with analytics",
-  "url": "<%= typeof baseUrl !== 'undefined' ? baseUrl : 'http://localhost:3000' %>",
-  "applicationCategory": "UtilitiesApplication",
-  "operatingSystem": "Any",
-  "author": {
-    "@type": "Person",
-    "name": "Cornelius Yoga"
-  },
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ShortURL",
+    "description": "Fast and reliable URL shortening service with analytics",
+    "url": "<%= typeof baseUrl !== 'undefined' ? baseUrl : 'http://localhost:3000' %>",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "author": {
+      "@type": "Person",
+      "name": "Cornelius Yoga"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
   }
-}
 </script>
 
 <!-- Performance Optimization -->
