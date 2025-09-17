@@ -6,26 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - URL Shortener</title>
     <link href="/css/output.css" rel="stylesheet" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
-  <body class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+  <body
+    class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-blue-900 dark:to-indigo-900"
+  >
     <!-- Header -->
     <%- include('../partials/header.html') %>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
       <!-- Page Header -->
-      <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+      <div
+        class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4"
+      >
         <div>
-          <h1 class="text-3xl font-bold text-gray-800 mb-2">Dashboard</h1>
-          <p class="text-gray-600">Manage and track all your shortened URLs</p>
+          <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100 mb-2">
+            Dashboard
+          </h1>
+          <p class="text-gray-600 dark:text-gray-400">
+            Manage and track all your shortened URLs
+          </p>
         </div>
-        <a href="/links/create" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl">
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+        <a
+          href="/links/create"
+          class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-indigo-700 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+        >
+          <svg
+            class="w-5 h-5 mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+            ></path>
           </svg>
           Create New Link
         </a>
@@ -33,9 +60,21 @@
 
       <!-- Error Message -->
       <% if (typeof error !== 'undefined' && error) { %>
-      <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded-lg mb-6 flex items-start space-x-3">
-        <svg class="w-5 h-5 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      <div
+        class="bg-red-100 dark:bg-red-900 border-l-4 border-red-500 text-red-700 dark:border-red-400 dark:text-red-300 p-4 rounded-lg mb-6 flex items-start space-x-3"
+      >
+        <svg
+          class="w-5 h-5 mt-0.5 flex-shrink-0"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
         </svg>
         <div>
           <p class="font-medium">Error</p>
@@ -46,44 +85,105 @@
 
       <!-- Stats Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700"
+        >
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-gray-600">Total Links</p>
-              <p class="text-3xl font-bold text-gray-900"><%= links.length %></p>
+              <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
+                Total Links
+              </p>
+              <p class="text-3xl font-bold text-gray-900 dark:text-gray-200">
+                <%= links.length %>
+              </p>
             </div>
-            <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+            <div
+              class="w-12 h-12 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-indigo-700 rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                ></path>
               </svg>
             </div>
           </div>
         </div>
 
-        <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700"
+        >
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-gray-600">Total Clicks</p>
-              <p class="text-3xl font-bold text-gray-900"><%= links.reduce((total, link) => total + (link.clicks || 0), 0) %></p>
+              <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
+                Total Clicks
+              </p>
+              <p class="text-3xl font-bold text-gray-900 dark:text-gray-200">
+                <%= links.reduce((total, link) => total + (link.clicks || 0), 0)
+                %>
+              </p>
             </div>
-            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 rounded-lg flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+            <div
+              class="w-12 h-12 bg-gradient-to-r from-green-500 to-green-600 dark:from-green-600 dark:to-green-700 rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                ></path>
               </svg>
             </div>
           </div>
         </div>
 
-        <div class="bg-white rounded-xl p-6 shadow-lg border border-gray-100">
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700"
+        >
           <div class="flex items-center justify-between">
             <div>
-              <p class="text-sm font-medium text-gray-600">This Month</p>
-              <p class="text-3xl font-bold text-gray-900"><%= links.filter(link => new Date(link.createdAt).getMonth() === new Date().getMonth()).length %></p>
+              <p class="text-sm font-medium text-gray-600 dark:text-gray-400">
+                This Month
+              </p>
+              <p class="text-3xl font-bold text-gray-900 dark:text-gray-200">
+                <%= links.filter(link => new Date(link.createdAt).getMonth() ===
+                new Date().getMonth()).length %>
+              </p>
             </div>
-            <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+            <div
+              class="w-12 h-12 bg-gradient-to-r from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700 rounded-lg flex items-center justify-center"
+            >
+              <svg
+                class="w-6 h-6 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                ></path>
               </svg>
             </div>
           </div>
@@ -91,24 +191,43 @@
       </div>
 
       <!-- Links Section -->
-      <div class="bg-white rounded-xl shadow-lg border border-gray-100">
+      <div
+        class="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700"
+      >
         <!-- Section Header -->
-        <div class="px-6 py-4 border-b border-gray-200">
-          <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <h2 class="text-xl font-semibold text-gray-800">Your Short URLs</h2>
+        <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+          <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+          >
+            <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-100">
+              Your Short URLs
+            </h2>
             <div class="flex items-center space-x-3">
               <div class="relative">
                 <input
                   type="text"
                   placeholder="Search links..."
-                  class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  class="pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:ring-blue-500 dark:focus:border-blue-500 outline-none"
                   id="searchInput"
                 />
-                <svg class="w-4 h-4 text-gray-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                <svg
+                  class="w-4 h-4 text-gray-400 dark:text:gray-300 absolute left-3 top-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  ></path>
                 </svg>
               </div>
-              <select class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none" id="sortSelect">
+              <select
+                class="px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:focus:rin-blue-500 dark:focus:border-blue-500 outline-none"
+                id="sortSelect"
+              >
                 <option value="newest">Newest First</option>
                 <option value="oldest">Oldest First</option>
                 <option value="clicks">Most Clicks</option>
@@ -121,18 +240,48 @@
         <% if (links.length === 0) { %>
         <!-- Empty State -->
         <div class="text-center py-16">
-          <div class="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full flex items-center justify-center">
-            <svg class="w-12 h-12 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+          <div
+            class="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900 dark:to-blue-800 rounded-full flex items-center justify-center"
+          >
+            <svg
+              class="w-12 h-12 text-blue-500 dark:text-blue-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+              ></path>
             </svg>
           </div>
-          <h3 class="text-2xl font-semibold text-gray-700 mb-3">No links yet</h3>
-          <p class="text-gray-600 mb-6 max-w-md mx-auto">
-            Create your first short URL to get started with tracking and analytics
+          <h3
+            class="text-2xl font-semibold text-gray-700 dark:text-gray-200 mb-3"
+          >
+            No links yet
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-md mx-auto">
+            Create your first short URL to get started with tracking and
+            analytics
           </p>
-          <a href="/links/create" class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl">
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          <a
+            href="/links/create"
+            class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-indigo-700 dark:hover:from-blue-500 dark:hover:to-indigo-600 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
+            <svg
+              class="w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+              ></path>
             </svg>
             Create Your First Link
           </a>
@@ -141,29 +290,56 @@
         <!-- Links Table -->
         <div class="overflow-x-auto">
           <table class="min-w-full" id="linksTable">
-            <thead class="bg-gray-50">
+            <thead class="bg-gray-50 dark:bg-gray-700">
               <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Link Info</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">URLs</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Performance</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                >
+                  Link Info
+                </th>
+                <th
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                >
+                  URLs
+                </th>
+                <th
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                >
+                  Performance
+                </th>
+                <th
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                >
+                  Created
+                </th>
+                <th
+                  class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider"
+                >
+                  Actions
+                </th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-gray-200">
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
               <% links.forEach(link => { %>
-              <tr class="hover:bg-gray-50 transition-colors duration-200" data-link-id="<%= link._id %>">
+              <tr
+                class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+                data-link-id="<%= link._id %>"
+              >
                 <!-- Link Info -->
                 <td class="px-6 py-4">
                   <div class="flex items-center">
-                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center text-white font-semibold text-sm mr-4">
+                    <div
+                      class="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 rounded-lg flex items-center justify-center text-white font-semibold text-sm mr-4"
+                    >
                       <%= (link.title || 'Untitled').charAt(0).toUpperCase() %>
                     </div>
                     <div>
-                      <div class="text-sm font-medium text-gray-900">
+                      <div
+                        class="text-sm font-medium text-gray-900 dark:text-gray-200"
+                      >
                         <%= link.title || 'Untitled' %>
                       </div>
-                      <div class="text-sm text-gray-500">
+                      <div class="text-sm text-gray-500 dark:text-gray-400">
                         ID: <%= link.shortCode %>
                       </div>
                     </div>
@@ -174,32 +350,47 @@
                 <td class="px-6 py-4">
                   <div class="space-y-2">
                     <div>
-                      <p class="text-xs text-gray-500 mb-1">Short URL</p>
+                      <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                        Short URL
+                      </p>
                       <div class="flex items-center space-x-2">
                         <a
                           href="<%= `${baseUrl || 'http://localhost:3000'}/${link.shortCode}` %>"
                           target="_blank"
-                          class="text-blue-600 hover:text-blue-800 font-medium text-sm"
+                          class="text-blue-600 hover:text-blue-800 dark:text-blue-40 dark:hover:text-blue-600 font-medium text-sm"
                         >
-                          <%= `${baseUrl || 'http://localhost:3000'}/${link.shortCode}` %>
+                          <%= `${baseUrl ||
+                          'http://localhost:3000'}/${link.shortCode}` %>
                         </a>
                         <button
                           onclick="copyToClipboard('<%= `${baseUrl || 'http://localhost:3000'}/${link.shortCode}` %>')"
-                          class="text-gray-400 hover:text-gray-600 transition-colors duration-200"
+                          class="text-gray-400 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300 transition-colors duration-200"
                           title="Copy URL"
                         >
-                          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                          <svg
+                            class="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                            ></path>
                           </svg>
                         </button>
                       </div>
                     </div>
                     <div>
-                      <p class="text-xs text-gray-500 mb-1">Original URL</p>
+                      <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                        Original URL
+                      </p>
                       <a
                         href="<%= link.originalUrl %>"
                         target="_blank"
-                        class="text-gray-600 hover:text-gray-800 text-sm truncate block max-w-xs"
+                        class="text-gray-600 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 text-sm truncate block max-w-xs"
                         title="<%= link.originalUrl %>"
                       >
                         <%= link.originalUrl %>
@@ -211,32 +402,45 @@
                 <!-- Performance -->
                 <td class="px-6 py-4">
                   <div class="flex items-center space-x-2">
-                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
-                      <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <div
+                      class="w-8 h-8 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center"
+                    >
+                      <svg
+                        class="w-4 h-4 text-green-600 dark:text-green-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                        ></path>
                       </svg>
                     </div>
                     <div>
-                      <p class="text-sm font-medium text-gray-900"><%= link.clicks %> clicks</p>
-                      <p class="text-xs text-gray-500">Total views</p>
+                      <p
+                        class="text-sm font-medium text-gray-900 dark:text-gray-200"
+                      >
+                        <%= link.clicks %> clicks
+                      </p>
+                      <p class="text-xs text-gray-500 dark:text-gray-400">
+                        Total views
+                      </p>
                     </div>
                   </div>
                 </td>
 
                 <!-- Created -->
                 <td class="px-6 py-4">
-                  <div class="text-sm text-gray-900">
-                    <%= new Date(link.createdAt).toLocaleDateString('id-ID', { 
-                      year: 'numeric', 
-                      month: 'short', 
-                      day: 'numeric' 
-                    }) %>
+                  <div class="text-sm text-gray-900 dark:text-gray-200">
+                    <%= new Date(link.createdAt).toLocaleDateString('id-ID', {
+                    year: 'numeric', month: 'short', day: 'numeric' }) %>
                   </div>
-                  <div class="text-xs text-gray-500">
-                    <%= new Date(link.createdAt).toLocaleTimeString('id-ID', { 
-                      hour: '2-digit', 
-                      minute: '2-digit' 
-                    }) %>
+                  <div class="text-xs text-gray-500 dark:text-gray-400">
+                    <%= new Date(link.createdAt).toLocaleTimeString('id-ID', {
+                    hour: '2-digit', minute: '2-digit' }) %>
                   </div>
                 </td>
 
@@ -245,21 +449,41 @@
                   <div class="flex items-center space-x-3">
                     <a
                       href="/stats/<%= link._id %>"
-                      class="inline-flex items-center px-3 py-1 border border-blue-200 text-blue-600 text-sm font-medium rounded-md hover:bg-blue-50 transition-colors duration-200"
+                      class="inline-flex items-center px-3 py-1 border border-blue-200 text-blue-600 dark:border-blue-800 dark:text-blue-400 text-sm font-medium rounded-md hover:bg-blue-50 dark:hover:bg-blue-800 transition-colors duration-200"
                       title="View Statistics"
                     >
-                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                      <svg
+                        class="w-4 h-4 mr-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                        ></path>
                       </svg>
                       Stats
                     </a>
                     <button
                       onclick="deleteLink('<%= link._id %>', '<%= link.title || 'Untitled' %>')"
-                      class="inline-flex items-center px-3 py-1 border border-red-200 text-red-600 text-sm font-medium rounded-md hover:bg-red-50 transition-colors duration-200"
+                      class="inline-flex items-center px-3 py-1 border border-red-200 text-red-600 dark:border-red-800 dark:text-red-400 text-sm font-medium rounded-md hover:bg-red-50 dark:hover:bg-red-800 transition-colors duration-200"
                       title="Delete Link"
                     >
-                      <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                      <svg
+                        class="w-4 h-4 mr-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                        ></path>
                       </svg>
                       Delete
                     </button>
@@ -278,18 +502,36 @@
     <%- include('../partials/footer.html') %>
 
     <!-- Loading Modal -->
-    <div id="loadingModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div
+      id="loadingModal"
+      class="fixed inset-0 bg-black dark:bg-gray-900 bg-opacity-50 flex items-center justify-center z-50 hidden"
+    >
       <div class="bg-white rounded-lg p-6 text-center">
-        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-        <p class="text-gray-600">Processing...</p>
+        <div
+          class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"
+        ></div>
+        <p class="text-gray-600 dark:text-gray-400">Processing...</p>
       </div>
     </div>
 
     <!-- Success Toast -->
-    <div id="successToast" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+    <div
+      id="successToast"
+      class="fixed top-4 right-4 bg-green-500 dark:bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50"
+    >
       <div class="flex items-center space-x-2">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        <svg
+          class="w-5 h-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 13l4 4L19 7"
+          ></path>
         </svg>
         <span id="successMessage">Success!</span>
       </div>
@@ -300,69 +542,73 @@
       async function copyToClipboard(text) {
         try {
           await navigator.clipboard.writeText(text);
-          showToast('URL copied to clipboard!');
+          showToast("URL copied to clipboard!");
         } catch (err) {
-          console.error('Failed to copy: ', err);
+          console.error("Failed to copy: ", err);
           // Fallback for older browsers
-          const textArea = document.createElement('textarea');
+          const textArea = document.createElement("textarea");
           textArea.value = text;
           document.body.appendChild(textArea);
           textArea.select();
-          document.execCommand('copy');
+          document.execCommand("copy");
           document.body.removeChild(textArea);
-          showToast('URL copied to clipboard!');
+          showToast("URL copied to clipboard!");
         }
       }
 
       // Show success toast
       function showToast(message) {
-        const toast = document.getElementById('successToast');
-        const messageEl = document.getElementById('successMessage');
+        const toast = document.getElementById("successToast");
+        const messageEl = document.getElementById("successMessage");
         messageEl.textContent = message;
-        toast.classList.remove('translate-x-full');
+        toast.classList.remove("translate-x-full");
         setTimeout(() => {
-          toast.classList.add('translate-x-full');
+          toast.classList.add("translate-x-full");
         }, 3000);
       }
 
       // Delete link function with confirmation
       async function deleteLink(id, title) {
-        if (confirm(`Are you sure you want to delete "${title}"? This action cannot be undone.`)) {
-          const loadingModal = document.getElementById('loadingModal');
-          loadingModal.classList.remove('hidden');
-          
+        if (
+          confirm(
+            `Are you sure you want to delete "${title}"? This action cannot be undone.`
+          )
+        ) {
+          const loadingModal = document.getElementById("loadingModal");
+          loadingModal.classList.remove("hidden");
+
           try {
             const response = await fetch(`/links/${id}`, {
-              method: 'DELETE',
+              method: "DELETE",
             });
 
             const result = await response.json();
-            loadingModal.classList.add('hidden');
+            loadingModal.classList.add("hidden");
 
             if (response.ok) {
-              showToast('Link deleted successfully');
+              showToast("Link deleted successfully");
               // Remove the row from table with animation
               const row = document.querySelector(`[data-link-id="${id}"]`);
-              row.style.opacity = '0';
-              row.style.transform = 'translateX(-100%)';
+              row.style.opacity = "0";
+              row.style.transform = "translateX(-100%)";
               setTimeout(() => {
                 row.remove();
                 // Update stats if needed
                 updateStats();
               }, 300);
             } else {
-              alert('Error: ' + result.error);
+              alert("Error: " + result.error);
             }
           } catch (error) {
-            loadingModal.classList.add('hidden');
-            alert('Error deleting link');
+            loadingModal.classList.add("hidden");
+            alert("Error deleting link");
           }
         }
       }
 
       // Update stats after deletion
       function updateStats() {
-        const rows = document.querySelectorAll('[data-link-id]');
+        const rows = document.querySelectorAll("[data-link-id]");
         if (rows.length === 0) {
           // Reload page to show empty state
           window.location.reload();
@@ -370,39 +616,45 @@
       }
 
       // Search and sort functionality
-      document.addEventListener('DOMContentLoaded', function() {
-        const searchInput = document.getElementById('searchInput');
-        const sortSelect = document.getElementById('sortSelect');
-        const table = document.getElementById('linksTable');
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("searchInput");
+        const sortSelect = document.getElementById("sortSelect");
+        const table = document.getElementById("linksTable");
 
         if (searchInput && table) {
-          searchInput.addEventListener('input', function() {
+          searchInput.addEventListener("input", function () {
             const searchTerm = this.value.toLowerCase();
-            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-            
-            Array.from(rows).forEach(row => {
+            const rows = table
+              .getElementsByTagName("tbody")[0]
+              .getElementsByTagName("tr");
+
+            Array.from(rows).forEach((row) => {
               const title = row.cells[0].textContent.toLowerCase();
               const shortUrl = row.cells[1].textContent.toLowerCase();
               const originalUrl = row.cells[1].textContent.toLowerCase();
-              
-              if (title.includes(searchTerm) || shortUrl.includes(searchTerm) || originalUrl.includes(searchTerm)) {
-                row.style.display = '';
+
+              if (
+                title.includes(searchTerm) ||
+                shortUrl.includes(searchTerm) ||
+                originalUrl.includes(searchTerm)
+              ) {
+                row.style.display = "";
               } else {
-                row.style.display = 'none';
+                row.style.display = "none";
               }
             });
           });
         }
 
         // Add smooth animations to table rows
-        const rows = document.querySelectorAll('[data-link-id]');
+        const rows = document.querySelectorAll("[data-link-id]");
         rows.forEach((row, index) => {
-          row.style.opacity = '0';
-          row.style.transform = 'translateY(20px)';
+          row.style.opacity = "0";
+          row.style.transform = "translateY(20px)";
           setTimeout(() => {
-            row.style.transition = 'all 0.3s ease-out';
-            row.style.opacity = '1';
-            row.style.transform = 'translateY(0)';
+            row.style.transition = "all 0.3s ease-out";
+            row.style.opacity = "1";
+            row.style.transform = "translateY(0)";
           }, index * 50);
         });
       });
