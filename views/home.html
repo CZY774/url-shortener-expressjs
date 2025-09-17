@@ -208,7 +208,7 @@
         >
           <a
             href="/auth/register"
-            class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-indigo-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+            class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-800 dark:to-indigo-900 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-indigo-700 dark:hover:from-blue-900 dark:hover:to-indigo-800 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
           >
             <svg
               class="w-5 h-5 mr-2"
@@ -229,7 +229,7 @@
             Already have an account?
             <a
               href="/auth/login"
-              class="text-blue-600 hover:text-blue-700 font-medium hover:underline"
+              class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-500 font-medium hover:underline"
             >
               Sign in
             </a>
@@ -254,17 +254,6 @@
             el.style.opacity = "1";
             el.style.transform = "translateY(0)";
           }, index * 200);
-        });
-
-        // Add hover effect to feature cards
-        const cards = document.querySelectorAll(".grid > div");
-        cards.forEach((card) => {
-          card.addEventListener("mouseenter", function () {
-            this.style.transform = "translateY(-8px)";
-          });
-          card.addEventListener("mouseleave", function () {
-            this.style.transform = "translateY(0)";
-          });
         });
       });
     </script>
