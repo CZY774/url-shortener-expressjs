@@ -3,6 +3,7 @@
 <html lang="id">
   <head>
     <%- include('partials/head.html', { title: 'URL Shortener - Shorten Your Long URLs' }) %>
+  </head>
   <body
     class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:bg-gradient-to-br dark:from-gray-900 dark:via-blue-900 dark:to-indigo-900 font-sans"
   >
@@ -52,33 +53,6 @@
         </p>
       </div>
 
-      <!-- Quick URL Shortener -->
-      <div class="max-w-4xl mx-auto mb-20">
-        <div
-          class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-8 md:p-10"
-        >
-          <h2 class="text-2xl font-semibold text-center text-gray-800 dark:text-gray-100 mb-8">
-            Try it now - No signup required
-          </h2>
-          <form class="space-y-4">
-            <div class="flex flex-col md:flex-row gap-4">
-              <input
-                type="url"
-                placeholder="Enter your long URL here..."
-                class="flex-1 px-6 py-4 text-lg border-2 border-gray-200 dark:border-gray-700 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 dark:focus:ring-blue-900 dark:focus:border-blue-700 transition-all duration-200 outline-none"
-                required
-              />
-              <button
-                type="submit"
-                class="px-8 py-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-indigo-700 hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
-              >
-                Shorten URL
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-
       <!-- Features Grid -->
       <div class="grid md:grid-cols-3 gap-8 mb-20">
         <div
@@ -101,7 +75,9 @@
               ></path>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
+          <h3
+            class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100"
+          >
             Lightning Fast
           </h3>
           <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -130,7 +106,9 @@
               ></path>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
+          <h3
+            class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100"
+          >
             Detailed Analytics
           </h3>
           <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -159,7 +137,9 @@
               ></path>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
+          <h3
+            class="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100"
+          >
             Secure & Reliable
           </h3>
           <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
@@ -194,12 +174,16 @@
 
       <!-- CTA Section -->
       <div
-        class="text-center bg-white dark:bg-gray-800 rounded-2xl p-12 shadow-xl border border-gray-100 dark:border-gray-700"
+        class="text-center bg-white dark:bg-gray-800 rounded-2xl p-12 shadow-xl border border-gray-100 dark:border-gray-700 mb-20"
       >
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6">
+        <h2
+          class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6"
+        >
           Ready to Get Started?
         </h2>
-        <p class="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+        <p
+          class="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto"
+        >
           Join thousands of users who trust our platform for their URL
           shortening needs.
         </p>
@@ -238,10 +222,678 @@
       </div>
     </main>
 
+    <!-- About Us Section -->
+    <section
+      id="about-us"
+      class="py-16 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700"
+    >
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6"
+          >
+            About ShortURL
+          </h2>
+          <p
+            class="text-xl text-gray-600 dark:text-gray-400 mb-12 leading-relaxed"
+          >
+            We're passionate about making the web more accessible and shareable
+            for everyone.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h3
+              class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-6"
+            >
+              Our Mission
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+              ShortURL was founded with a simple mission: to provide the
+              fastest, most reliable URL shortening service while respecting
+              user privacy and delivering powerful analytics. We believe that
+              sharing links should be effortless, and tracking their performance
+              should be insightful.
+            </p>
+            <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+              Since our launch, we've helped thousands of users create over
+              10,000 short links, generating millions of clicks across the
+              globe. Our platform is trusted by individuals, small businesses,
+              and enterprises who value speed, reliability, and detailed
+              insights.
+            </p>
+          </div>
+
+          <div
+            class="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-900 dark:to-indigo-800 rounded-2xl p-8"
+          >
+            <div class="space-y-6">
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center"
+                >
+                  <svg
+                    class="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 dark:text-gray-100">
+                    Lightning Fast
+                  </h4>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Sub-second URL processing
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center"
+                >
+                  <svg
+                    class="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 dark:text-gray-100">
+                    99.9% Uptime
+                  </h4>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Reliable service you can count on
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-4">
+                <div
+                  class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center"
+                >
+                  <svg
+                    class="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-gray-800 dark:text-gray-100">
+                    Privacy First
+                  </h4>
+                  <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    Your data is always protected
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Help & FAQ Section -->
+    <section id="help-faq" class="py-16 bg-gray-50 dark:bg-gray-900">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6"
+          >
+            Help & Frequently Asked Questions
+          </h2>
+          <p class="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Find answers to common questions about our URL shortening service.
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+          <div class="space-y-6">
+            <!-- FAQ Item 1 -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+            >
+              <button
+                class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                onclick="toggleFaq('faq1')"
+              >
+                <span
+                  class="text-lg font-semibold text-gray-800 dark:text-gray-100"
+                >
+                  How does URL shortening work?
+                </span>
+                <svg
+                  class="w-5 h-5 text-gray-500 transform transition-transform"
+                  id="faq1-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div class="hidden px-6 pb-4" id="faq1-content">
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  URL shortening works by creating a unique, shorter alias for
+                  your long URL. When someone clicks the short link, they are
+                  automatically redirected to the original long URL. This
+                  process is instantaneous and transparent to the user.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+            >
+              <button
+                class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                onclick="toggleFaq('faq2')"
+              >
+                <span
+                  class="text-lg font-semibold text-gray-800 dark:text-gray-100"
+                >
+                  Is ShortURL free to use?
+                </span>
+                <svg
+                  class="w-5 h-5 text-gray-500 transform transition-transform"
+                  id="faq2-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div class="hidden px-6 pb-4" id="faq2-content">
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  Yes! ShortURL offers a completely free tier that allows you to
+                  shorten unlimited URLs and access basic analytics. You can
+                  create an account to manage your links and view detailed
+                  statistics about their performance.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+            >
+              <button
+                class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                onclick="toggleFaq('faq3')"
+              >
+                <span
+                  class="text-lg font-semibold text-gray-800 dark:text-gray-100"
+                >
+                  Do shortened links expire?
+                </span>
+                <svg
+                  class="w-5 h-5 text-gray-500 transform transition-transform"
+                  id="faq3-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div class="hidden px-6 pb-4" id="faq3-content">
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  No, your shortened links do not expire. Once created, they
+                  will continue to work indefinitely. However, if you have an
+                  account, you can manually delete links you no longer need from
+                  your dashboard.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ Item 4 -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+            >
+              <button
+                class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                onclick="toggleFaq('faq4')"
+              >
+                <span
+                  class="text-lg font-semibold text-gray-800 dark:text-gray-100"
+                >
+                  Can I customize my short links?
+                </span>
+                <svg
+                  class="w-5 h-5 text-gray-500 transform transition-transform"
+                  id="faq4-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div class="hidden px-6 pb-4" id="faq4-content">
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  Yes! Registered users can create custom aliases for their
+                  short links, making them more memorable and branded. For
+                  example, instead of a random string, you could create
+                  "short.ly/my-website" for your website.
+                </p>
+              </div>
+            </div>
+
+            <!-- FAQ Item 5 -->
+            <div
+              class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
+            >
+              <button
+                class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                onclick="toggleFaq('faq5')"
+              >
+                <span
+                  class="text-lg font-semibold text-gray-800 dark:text-gray-100"
+                >
+                  What analytics are available?
+                </span>
+                <svg
+                  class="w-5 h-5 text-gray-500 transform transition-transform"
+                  id="faq5-icon"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  ></path>
+                </svg>
+              </button>
+              <div class="hidden px-6 pb-4" id="faq5-content">
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  Our analytics include total clicks, geographic data, referrer
+                  information, device types, and click timestamps. This data
+                  helps you understand your audience and optimize your marketing
+                  efforts. All analytics respect user privacy and comply with
+                  data protection regulations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Terms of Service Section -->
+    <section id="terms-of-service" class="py-16 bg-white dark:bg-gray-800">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2
+              class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6"
+            >
+              Terms of Service
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400">
+              Last updated: January 2025
+            </p>
+          </div>
+
+          <div class="prose prose-lg dark:prose-invert max-w-none">
+            <div class="space-y-8">
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
+                >
+                  1. Acceptance of Terms
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  By accessing and using ShortURL's services, you accept and
+                  agree to be bound by the terms and provision of this
+                  agreement. If you do not agree to abide by the above, please
+                  do not use this service.
+                </p>
+              </div>
+
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
+                >
+                  2. Use License
+                </h3>
+                <p
+                  class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4"
+                >
+                  Permission is granted to temporarily access ShortURL's
+                  services for personal, non-commercial transitory viewing only.
+                  This is the grant of a license, not a transfer of title, and
+                  under this license you may not:
+                </p>
+                <ul
+                  class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2"
+                >
+                  <li>modify or copy the materials</li>
+                  <li>
+                    use the materials for any commercial purpose or for any
+                    public display
+                  </li>
+                  <li>
+                    attempt to reverse engineer any software contained on the
+                    website
+                  </li>
+                  <li>
+                    remove any copyright or other proprietary notations from the
+                    materials
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
+                >
+                  3. Disclaimer
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  The materials on ShortURL's website are provided on an 'as is'
+                  basis. ShortURL makes no warranties, expressed or implied, and
+                  hereby disclaims and negates all other warranties including
+                  without limitation, implied warranties or conditions of
+                  merchantability, fitness for a particular purpose, or
+                  non-infringement of intellectual property or other violation
+                  of rights.
+                </p>
+              </div>
+
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
+                >
+                  4. Limitations
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  In no event shall ShortURL or its suppliers be liable for any
+                  damages (including, without limitation, damages for loss of
+                  data or profit, or due to business interruption) arising out
+                  of the use or inability to use the materials on ShortURL's
+                  website, even if ShortURL or a ShortURL authorized
+                  representative has been notified orally or in writing of the
+                  possibility of such damage.
+                </p>
+              </div>
+
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
+                >
+                  5. Prohibited Uses
+                </h3>
+                <p
+                  class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4"
+                >
+                  You may not use ShortURL to shorten links to content that:
+                </p>
+                <ul
+                  class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2"
+                >
+                  <li>
+                    Is illegal, harmful, threatening, abusive, harassing,
+                    defamatory, or otherwise objectionable
+                  </li>
+                  <li>Violates intellectual property rights</li>
+                  <li>Contains malware, viruses, or other malicious code</li>
+                  <li>
+                    Promotes spam or unsolicited commercial communications
+                  </li>
+                  <li>
+                    Impersonates any person or entity or misrepresents your
+                    affiliation
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
+                >
+                  6. Modifications
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  ShortURL may revise these terms of service for its website at
+                  any time without notice. By using this website, you are
+                  agreeing to be bound by the then current version of these
+                  terms of service.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy Policy Section -->
+    <section id="privacy-policy" class="py-16 bg-gray-50 dark:bg-gray-900">
+      <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+          <div class="text-center mb-12">
+            <h2
+              class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100 mb-6"
+            >
+              Privacy Policy
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-400">
+              Last updated: January 2025
+            </p>
+          </div>
+
+          <div class="prose prose-lg dark:prose-invert max-w-none">
+            <div class="space-y-8">
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
+                >
+                  Information We Collect
+                </h3>
+                <p
+                  class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4"
+                >
+                  We collect information you provide directly to us, such as
+                  when you create an account, shorten a URL, or contact us for
+                  support. This may include:
+                </p>
+                <ul
+                  class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2"
+                >
+                  <li>Email address and username for account creation</li>
+                  <li>URLs you choose to shorten</li>
+                  <li>Custom aliases you create for your links</li>
+                  <li>Analytics data when users click your shortened links</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
+                >
+                  How We Use Your Information
+                </h3>
+                <p
+                  class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4"
+                >
+                  We use the information we collect to:
+                </p>
+                <ul
+                  class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2"
+                >
+                  <li>Provide, maintain, and improve our services</li>
+                  <li>Process transactions and send related information</li>
+                  <li>Send technical notices, updates, and support messages</li>
+                  <li>Provide analytics and insights about link performance</li>
+                  <li>Monitor and analyze trends and usage</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
+                >
+                  Information Sharing
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  We do not sell, trade, or otherwise transfer your personally
+                  identifiable information to third parties. This does not
+                  include trusted third parties who assist us in operating our
+                  website, conducting our business, or servicing you, as long as
+                  those parties agree to keep this information confidential.
+                </p>
+              </div>
+
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
+                >
+                  Data Security
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  We implement appropriate security measures to protect against
+                  unauthorized access, alteration, disclosure, or destruction of
+                  your personal information. However, no method of transmission
+                  over the Internet or electronic storage is 100% secure.
+                </p>
+              </div>
+
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
+                >
+                  Analytics and Cookies
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  When someone clicks on a shortened link, we collect anonymous
+                  analytics data including IP address, user agent, referrer, and
+                  timestamp. This information is aggregated and used to provide
+                  insights to link creators. We use cookies to enhance user
+                  experience and analyze website traffic.
+                </p>
+              </div>
+
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
+                >
+                  Your Rights
+                </h3>
+                <p
+                  class="text-gray-600 dark:text-gray-400 leading-relaxed mb-4"
+                >
+                  You have the right to:
+                </p>
+                <ul
+                  class="list-disc list-inside text-gray-600 dark:text-gray-400 space-y-2"
+                >
+                  <li>Access and receive a copy of your personal data</li>
+                  <li>Rectify inaccurate personal data</li>
+                  <li>Request deletion of your personal data</li>
+                  <li>Object to processing of your personal data</li>
+                  <li>Data portability</li>
+                </ul>
+              </div>
+
+              <div>
+                <h3
+                  class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4"
+                >
+                  Contact Information
+                </h3>
+                <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+                  If you have any questions about this Privacy Policy, please
+                  contact us at privacy@shorturl.com or through our contact
+                  form.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Footer -->
     <%- include('partials/footer.html') %>
 
     <script>
+      // FAQ Toggle Functionality
+      function toggleFaq(faqId) {
+        const content = document.getElementById(faqId + "-content");
+        const icon = document.getElementById(faqId + "-icon");
+
+        if (content.classList.contains("hidden")) {
+          content.classList.remove("hidden");
+          icon.style.transform = "rotate(180deg)";
+        } else {
+          content.classList.add("hidden");
+          icon.style.transform = "rotate(0deg)";
+        }
+      }
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
       // Add some interactive animations
       document.addEventListener("DOMContentLoaded", function () {
         // Animate hero elements on load
