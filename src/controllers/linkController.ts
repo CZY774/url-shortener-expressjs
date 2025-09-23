@@ -2,6 +2,7 @@ import { Response } from "express";
 import Link from "../models/Link";
 import generateShortCode from "../utils/generateShortCode";
 import { AuthRequest } from "../types";
+import { Parser as Json2csvParser } from "json2csv";
 
 // Get all links for user
 const getLinks = async (req: AuthRequest, res: Response): Promise<void> => {
@@ -70,4 +71,37 @@ const deleteLink = async (req: AuthRequest, res: Response): Promise<void> => {
   }
 };
 
-export { getLinks, createLink, showCreateForm, deleteLink };
+// Download report for a link
+const downloadReport = async (
+  req: AuthRequest,
+  res: Response
+): Promise<void> => {
+  try {
+    const { shortCode } = req.params;
+    const link = await Link.findOne({ shortCode, createdBy: req.user!._id });
+    if (!link) {
+      res.status(404).send("Link not found");
+      return;
+    }
+
+    // Prepare data for CSV
+    const records = (link.clickHistory || []).map((click) => ({
+      createdAt: link.createdAt,
+      updatedAt: link.updatedAt,
+      clickedAt: click.timestamp,
+    }));
+
+    // CSV export
+    const fields = ["createdAt", "updatedAt", "clickedAt"];
+    const json2csv = new Json2csvParser({ fields });
+    const csv = json2csv.parse(records);
+
+    res.header("Content-Type", "text/csv");
+    res.attachment(`report-${shortCode}.csv`);
+    res.send(csv);
+  } catch (error) {
+    res.status(500).send("Failed to generate report");
+  }
+};
+
+export { getLinks, createLink, showCreateForm, deleteLink, downloadReport };
