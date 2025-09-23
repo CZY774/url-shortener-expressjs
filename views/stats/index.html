@@ -447,31 +447,44 @@
                 </th>
               </tr>
             </thead>
-            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+            <tbody
+              class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700"
+            >
               <% if (link.clickHistory && link.clickHistory.length > 0) { %> <%
               link.clickHistory.slice(-10).reverse().forEach(function(click) {
               %>
-              <tr class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+              <tr
+                class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200"
+              >
                 <!-- Created At -->
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                <td
+                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100"
+                >
                   <%= new Date(link.createdAt && link.createdAt.$date ?
                   link.createdAt.$date : link.createdAt).toLocaleString('id-ID',
                   { timeZone: 'Asia/Jakarta' }) %>
                 </td>
                 <!-- Last Update -->
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                <td
+                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100"
+                >
                   <%= new Date(link.updatedAt && link.updatedAt.$date ?
                   link.updatedAt.$date : link.updatedAt).toLocaleString('id-ID',
                   { timeZone: 'Asia/Jakarta' }) %>
                 </td>
                 <!-- Clicked At -->
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                <td
+                  class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100"
+                >
                   <%= new Date(click.timestamp).toLocaleString('id-ID') %>
                 </td>
               </tr>
               <% }); %> <% } else { %>
               <tr>
-                <td colspan="6" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
+                <td
+                  colspan="6"
+                  class="px-6 py-8 text-center text-gray-500 dark:text-gray-400"
+                >
                   No click history available
                 </td>
               </tr>
@@ -503,9 +516,9 @@
 
       // Download report function
       function downloadReport() {
-        // Implement download functionality
-        console.log("Downloading report...");
-        showToast("Report has been downloaded successfully!");
+        const shortCode = "<%= link.shortCode %>";
+        window.open(`/links/${shortCode}/report`, "_blank");
+        showToast("Report download started!");
       }
 
       // Change timeframe function
@@ -514,13 +527,25 @@
         document
           .querySelectorAll('[onclick^="changeTimeframe"]')
           .forEach((btn) => {
-            btn.classList.remove("bg-blue-100 dark:bg-blue-900", "text-blue-600 dark:text-blue-400");
-            btn.classList.add("text-gray-600 dark:text-gray-400", "hover:bg-gray-100 dark:hover:bg-gray-700");
+            btn.classList.remove(
+              "bg-blue-100 dark:bg-blue-900",
+              "text-blue-600 dark:text-blue-400"
+            );
+            btn.classList.add(
+              "text-gray-600 dark:text-gray-400",
+              "hover:bg-gray-100 dark:hover:bg-gray-700"
+            );
           });
 
         // Add active class to clicked button
-        event.target.classList.add("bg-blue-100 dark:bg-blue-900", "text-blue-600 dark:text-blue-400");
-        event.target.classList.remove("text-gray-600 dark:text-gray-400", "hover:bg-gray-100 dark:hover:bg-gray-700");
+        event.target.classList.add(
+          "bg-blue-100 dark:bg-blue-900",
+          "text-blue-600 dark:text-blue-400"
+        );
+        event.target.classList.remove(
+          "text-gray-600 dark:text-gray-400",
+          "hover:bg-gray-100 dark:hover:bg-gray-700"
+        );
 
         // Update chart data based on period
         console.log("Changing timeframe to:", period);
@@ -531,7 +556,9 @@
       function showToast(message, type = "success") {
         const toast = document.createElement("div");
         toast.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${
-          type === "success" ? "bg-green-500 dark:bg-green-600" : "bg-red-500 dark:bg-red-600"
+          type === "success"
+            ? "bg-green-500 dark:bg-green-600"
+            : "bg-red-500 dark:bg-red-600"
         } text-white`;
         toast.textContent = message;
         document.body.appendChild(toast);
