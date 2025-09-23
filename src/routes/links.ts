@@ -4,6 +4,7 @@ import {
   createLink,
   showCreateForm,
   deleteLink,
+  downloadReport,
 } from "../controllers/linkController";
 
 const router = express.Router();
@@ -19,5 +20,8 @@ router.post("/create", createLink);
 
 // Delete a link
 router.delete("/:id", deleteLink);
+
+// Download report for a link
+router.get("/:shortCode/report", downloadReport);
 
 export default router;
